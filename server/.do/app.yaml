@@ -7,7 +7,7 @@ services:
       repo: strdr4605/grapple-user-bot
       branch: master
       deploy_on_push: true
-    source_dir: /server
+    source_dir: server
     dockerfile_path: Dockerfile
     http_port: 3002
     instance_count: 1

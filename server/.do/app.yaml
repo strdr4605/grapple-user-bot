@@ -1,14 +1,6 @@
 name: grapple-server
 region: nyc
 
-envs:
-  - key: OPENAI_API_KEY
-    type: SECRET
-    scope: RUN_TIME
-  - key: PIPEDRIVE_KEY
-    type: SECRET
-    scope: RUN_TIME
-
 services:
   - name: api
     github:

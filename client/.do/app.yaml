@@ -1,0 +1,18 @@
+name: grapple-client
+region: nyc
+
+services:
+  - name: web
+    github:
+      repo: strdr4605/grapple-user-bot
+      branch: master
+      deploy_on_push: true
+    source_dir: /client
+    dockerfile_path: Dockerfile
+    http_port: 3000
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    envs:
+      - key: NEXT_PUBLIC_API_URL
+        type: SECRET
+        scope: BUILD_TIME

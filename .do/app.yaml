@@ -3,6 +3,10 @@ region: nyc
 
 services:
   - name: server
+    github:
+      repo: strdr4605/grapple-user-bot
+      branch: master
+      deploy_on_push: true
     source_dir: /server
     dockerfile_path: Dockerfile
     http_port: 3002
@@ -19,6 +23,10 @@ services:
         scope: RUN_TIME
 
   - name: client
+    github:
+      repo: strdr4605/grapple-user-bot
+      branch: master
+      deploy_on_push: true
     source_dir: /client
     dockerfile_path: Dockerfile
     http_port: 3000

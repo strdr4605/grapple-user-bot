@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import { getDealContext } from "./services/pipedrive";
-import { initConversation } from "./services/openai";
+import { chat } from "./services/openai";
 
 dotenv.config({ path: "./.env" });
 
@@ -15,18 +15,26 @@ app.get("/", (req, res) => {
   return res.send("Hello");
 });
 
-app.get("/api/v1/user-context", (req, res) => {
-  res.json({
-    context: getDealContext(),
-  });
+app.get("/api/v1/user-context", async (req, res) => {
+  try {
+    const context = await getDealContext();
+    res.json({ context });
+  } catch (error) {
+    console.error("Error fetching context:", error);
+    res.status(500).json({ error: "Failed to fetch context" });
+  }
 });
 
-app.get("/api/v1/init-conversation", async (req, res) => {
+app.post("/api/v1/chat", async (req, res) => {
   try {
-    const response = await initConversation(req.query.input as string);
+    const { message, sessionId } = req.body;
+    if (!message || !sessionId) {
+      return res.status(400).json({ error: "message and sessionId required" });
+    }
+    const response = await chat(sessionId, message);
     res.json(response);
   } catch (error) {
-    console.error("Error in init-conversation:", error);
+    console.error("Error in chat:", error);
     res.status(500).json({ error: "Failed to process request" });
   }
 });

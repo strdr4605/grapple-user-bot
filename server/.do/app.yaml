@@ -8,7 +8,6 @@ services:
       branch: master
       deploy_on_push: true
     source_dir: server
-    dockerfile_path: server/Dockerfile
     http_port: 3002
     instance_count: 1
     instance_size_slug: basic-xxs
@@ -17,7 +16,7 @@ services:
         value: "3002"
       - key: OPENAI_API_KEY
         type: SECRET
-        scope: RUN_AND_BUILD_TIME
+        scope: RUN_TIME
       - key: PIPEDRIVE_KEY
         type: SECRET
-        scope: RUN_AND_BUILD_TIME
+        scope: RUN_TIME

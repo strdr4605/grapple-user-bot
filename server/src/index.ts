@@ -1,21 +1,10 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-
-// Debug: log env vars BEFORE dotenv
-console.log("=== ENV BEFORE DOTENV ===");
-console.log("PIPEDRIVE_KEY exists:", !!process.env.PIPEDRIVE_KEY);
-console.log("OPENAI_API_KEY exists:", !!process.env.OPENAI_API_KEY);
-
-dotenv.config();
-
-// Debug: log env vars AFTER dotenv
-console.log("=== ENV AFTER DOTENV ===");
-console.log("PIPEDRIVE_KEY exists:", !!process.env.PIPEDRIVE_KEY);
-console.log("OPENAI_API_KEY exists:", !!process.env.OPENAI_API_KEY);
-
 import { getDealContext } from "./services/pipedrive";
 import { chat } from "./services/openai";
+
+dotenv.config();
 
 const app = express();
 

@@ -22,12 +22,15 @@ app.get("/api/v1/user-context", (req, res) => {
 });
 
 app.get("/api/v1/init-conversation", async (req, res) => {
-  // @ts-ignore
-  console.log("req.params: ", req.query.input);
-  const response = await initConversation(req.query.input as string);
-  res.json(response);
+  try {
+    const response = await initConversation(req.query.input as string);
+    res.json(response);
+  } catch (error) {
+    console.error("Error in init-conversation:", error);
+    res.status(500).json({ error: "Failed to process request" });
+  }
 });
 
 app.listen(process.env.PORT, () => {
-  console.log(`Server running on port ${process.env.OPENAI_API_KEY}`);
+  console.log(`Server running on port ${process.env.PORT}`);
 });

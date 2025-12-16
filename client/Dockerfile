@@ -8,6 +8,9 @@ RUN npm install --legacy-peer-deps
 
 COPY . .
 
+# Force cache invalidation
+RUN echo "Build timestamp: $(date)"
+
 ARG NEXT_PUBLIC_API_URL
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
 

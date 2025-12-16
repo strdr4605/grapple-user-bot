@@ -17,7 +17,7 @@ services:
         value: "3002"
       - key: OPENAI_API_KEY
         type: SECRET
-        scope: RUN_TIME
+        scope: RUN_AND_BUILD_TIME
       - key: PIPEDRIVE_KEY
         type: SECRET
-        scope: RUN_TIME
+        scope: RUN_AND_BUILD_TIME

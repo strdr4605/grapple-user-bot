@@ -1,7 +1,8 @@
+import dotenv from "dotenv";
+dotenv.config({ path: "./.env" });
+
 import OpenAI from "openai";
 import { getDealContext } from "./pipedrive";
-
-// console.log(process.env["OPENAI_API_KEY"], process.env["PIPEDRIVE_KEY"]);
 
 const client = new OpenAI({
   apiKey: process.env["OPENAI_API_KEY"], // This is the default and can be omitted

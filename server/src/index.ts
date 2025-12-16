@@ -1,19 +1,10 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-
-dotenv.config();
-
-// Debug on startup
-console.log("ENV CHECK:", {
-  PORT: process.env.PORT,
-  PIPEDRIVE_KEY_SET: !!process.env.PIPEDRIVE_KEY,
-  OPENAI_KEY_SET: !!process.env.OPENAI_API_KEY,
-  ALL_ENV_KEYS: Object.keys(process.env).filter(k => k.includes('PIPE') || k.includes('OPENAI') || k.includes('PORT'))
-});
-
 import { getDealContext } from "./services/pipedrive";
 import { chat } from "./services/openai";
+
+dotenv.config();
 
 const app = express();
 

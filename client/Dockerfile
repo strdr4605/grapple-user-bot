@@ -8,8 +8,9 @@ RUN npm install --legacy-peer-deps
 
 COPY . .
 
-# Debug: verify .env.production is present
-RUN echo "=== .env.production ===" && cat .env.production && echo "======================="
+# Accept build arg and set env for Next.js build
+ARG NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 
 RUN npm run build
 

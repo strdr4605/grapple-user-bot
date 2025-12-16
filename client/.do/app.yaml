@@ -8,7 +8,6 @@ services:
       branch: master
       deploy_on_push: true
     source_dir: client
-    dockerfile_path: client/Dockerfile
     http_port: 3000
     instance_count: 1
     instance_size_slug: basic-xxs

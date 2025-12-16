@@ -1,0 +1,24 @@
+services:
+  server:
+    build: ./server
+    ports:
+      - "3002:3002"
+    environment:
+      - PORT=3002
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - PIPEDRIVE_KEY=${PIPEDRIVE_KEY}
+    volumes:
+      - ./server/src:/app/src
+    command: npm run dev
+
+  client:
+    build:
+      context: ./client
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:3002/api/v1/
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:3002/api/v1/
+    depends_on:
+      - server

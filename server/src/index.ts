@@ -4,7 +4,7 @@ import cors from "cors";
 import { getDealContext } from "./services/pipedrive";
 import { chat } from "./services/openai";
 
-dotenv.config({ path: "./.env" });
+dotenv.config();
 
 const app = express();
 
